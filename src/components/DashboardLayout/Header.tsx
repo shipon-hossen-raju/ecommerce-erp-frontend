@@ -1,10 +1,11 @@
 import React from "react";
 import { defaultImages } from "../../assets";
-import { logoSVG } from "../../assets/icons/icons";
+// import { logoSVG } from "../../assets/icons/icons";
 import { useGetMeQuery } from "../../redux/features/user/userApi";
 import { useAppSelector } from "../../redux/hooks/hooks";
 import type { IUser } from "../../types/user.type";
 import UserLoading from "../loader/UserLoading";
+import logoPicture from "../../assets/erp-logo.png";
 
 interface HeaderProps {
   children?: React.ReactNode;
@@ -24,7 +25,10 @@ const Header: React.FC<HeaderProps> = ({ children }) => {
       <div className="flex items-center">
         {children}
         <h1 className="text-lg font-semibold text-gray-900">
-          <figure className="my-1">{logoSVG}</figure>
+          {/* <figure className="my-1">{logoSVG}</figure> */}
+          <figure className="my-1">
+            <img src={logoPicture} alt="logo" className="h-16" />
+          </figure>
         </h1>
       </div>
 

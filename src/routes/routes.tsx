@@ -3,6 +3,7 @@ import AuthLayout from "../components/AuthLayout/AuthLayout";
 import DashboardLayout from "../components/DashboardLayout/DashboardLayout";
 import LoginPage from "../pages/auth/LoginPage";
 import DashboardPage from "../pages/dashboard/DashboardPage";
+import ProductsPage from "../pages/products/ProductsPage";
 import NotFoundRoute from "./NotFoundRoute";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <DashboardPage />,
+      },
+      {
+        path: "products",
+        element: <ProductsPage />,
       },
     ],
   },
