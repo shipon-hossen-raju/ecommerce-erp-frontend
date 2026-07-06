@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* IE and Edge */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    /* Firefox */
+    scrollbar-width: none;
+  }
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Hide scrollbar but allow scroll */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE & Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.custom-table .ant-table-thead > tr > th {
+  color: #000;
+  font-weight: 500;
+}
+
+.custom-table .ant-table-thead > tr {
+  background-color: #a5a5a5;
+  border-radius: 20px !important;
+}
+
+.custom-table {
+  @apply p-5 rounded-card-radius shadow-card-shadow;
+}
+
+@layer components {
+  .btn-outline-primary {
+    @apply border border-primary text-primary py-1.5 px-3 rounded-md hover:bg-primary hover:text-white transition-all duration-200 ease-in;
+  }
+
+  .btn-primary {
+    @apply bg-primary border border-primary text-white py-1.5 px-3 rounded-md hover:bg-transparent hover:text-primary transition-all duration-200 ease-in;
+  }
+}
+
+@media (max-width: 640px) {
+  .custom-table .ant-table {
+    font-size: 0.875rem;
+  }
+
+  .custom-table .ant-table-thead > tr > th,
+  .custom-table .ant-table-tbody > tr > td {
+    padding: 8px 4px;
+  }
+}
+
+.ant-upload-wrapper.ant-upload-picture-card-wrapper
+  .ant-upload-list.ant-upload-list-picture-card
+  .ant-upload-list-item,
+.ant-upload-wrapper.ant-upload-picture-card-wrapper
+  .ant-upload.ant-upload-select,
+.ant-upload-wrapper.ant-upload-picture-circle-wrapper
+  .ant-upload.ant-upload-select {
+  width: 250px !important;
+  height: 250px !important;
+}
+
+/* Ant design customize code */
+:where(.css-dev-only-do-not-override-36gkoj).ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector {
+    border: none !important;
+    background: transparent !important;
+}
