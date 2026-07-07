@@ -1,6 +1,13 @@
 import LoginForm from "../../components/auth/LoginForm";
+import { useAppSelector } from "../../redux/hooks/hooks";
 
 const LoginPage = () => {
+  const user = useAppSelector((state) => state.user.user);
+
+  if (user) {
+    window.location.href = "/";
+  }
+
   return (
     <>
       <div className="w-full max-w-lg bg-white py-6 lg:py-24 px-4 md:px-10 shadow-[0px_18px_48px_0px_#CFC9DDB2] rounded-md">

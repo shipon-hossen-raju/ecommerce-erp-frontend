@@ -7,6 +7,7 @@ import { apiSlice } from "../api/apiSlice";
 
 export const productApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
+    // List products with search/filter/pagination params
     getProducts: builder.query({
       query: (args: IParam[]) => {
         const params = paramsGenerate(args);
@@ -28,6 +29,7 @@ export const productApi = apiSlice.injectEndpoints({
       providesTags: [TagTypes.products],
     }),
 
+    // Create a product (multipart form with image)
     createProduct: builder.mutation({
       query: (data: FormData) => ({
         url: "/products",
@@ -46,6 +48,7 @@ export const productApi = apiSlice.injectEndpoints({
       },
     }),
 
+    // Update a product, optionally replacing its image
     updateProduct: builder.mutation({
       query: ({ id, data }: { id: string; data: FormData }) => ({
         url: `/products/${id}`,
@@ -64,6 +67,7 @@ export const productApi = apiSlice.injectEndpoints({
       },
     }),
 
+    // Delete a product
     deleteProduct: builder.mutation({
       query: (id: string) => ({
         url: `/products/${id}`,

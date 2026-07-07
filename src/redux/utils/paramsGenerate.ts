@@ -1,5 +1,6 @@
 import type { IParam } from "../../types/global.type";
 
+// Build URLSearchParams from a list of name/value filter params, skipping empty values
 export default function paramsGenerate(args: IParam[]) {
   const params = new URLSearchParams();
 

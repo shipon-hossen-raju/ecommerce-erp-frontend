@@ -3,6 +3,7 @@ import TagTypes from "../../../constant/tagType.constant.js";
 
 export const dashboardApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
+    // Fetch role-based dashboard summary stats
     getDashboard: builder.query({
       query: () => {
         return {
@@ -13,6 +14,7 @@ export const dashboardApi = apiSlice.injectEndpoints({
       keepUnusedDataFor: 600,
       providesTags: [TagTypes.dashboard],
     }),
+    // Fetch daily sales totals for the given number of days
     getSalesTrend: builder.query({
       query: (days: number) => {
         return {
@@ -24,6 +26,7 @@ export const dashboardApi = apiSlice.injectEndpoints({
       keepUnusedDataFor: 600,
       providesTags: [TagTypes.dashboard],
     }),
+    // Fetch best-selling products for the given period
     getTopProducts: builder.query({
       query: ({ days, limit }: { days: number; limit?: number }) => {
         return {

@@ -14,6 +14,7 @@ class SessionHelper {
     return "";
   }
 
+  // Decode the JWT for user info; clears session and redirects if no token
   getUserInfo() {
     const token = getToken();
 
@@ -73,6 +74,7 @@ class SessionHelper {
     return localStorage.getItem("authId");
   }
 
+  // Clear all local storage and send the user to the login page
   logout() {
     localStorage.clear();
     window.location.href = "/auth/signin";

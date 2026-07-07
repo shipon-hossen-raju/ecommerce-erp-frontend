@@ -8,6 +8,7 @@ import { SetUser } from "./userSlice";
 
 export const userApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
+    // Fetch the logged-in user's profile and store it in userSlice
     getMe: builder.query({
       query: () => ({
         url: "/auth/me",
@@ -32,6 +33,7 @@ export const userApi = apiSlice.injectEndpoints({
       },
     }),
 
+    // List all users
     getUsers: builder.query({
       query: () => ({
         url: "/users",
@@ -41,6 +43,7 @@ export const userApi = apiSlice.injectEndpoints({
       providesTags: [TagTypes.users],
     }),
 
+    // Create a user and refresh the user list
     createUser: builder.mutation({
       query: (data: {
         name: string;
@@ -64,6 +67,7 @@ export const userApi = apiSlice.injectEndpoints({
       },
     }),
 
+    // Update a user; also refresh "me" if the edited user is the current user
     updateUser: builder.mutation({
       query: ({
         id,
@@ -93,6 +97,7 @@ export const userApi = apiSlice.injectEndpoints({
       },
     }),
 
+    // Delete a user and refresh the user list
     deleteUser: builder.mutation({
       query: (id: string) => ({
         url: `/users/${id}`,

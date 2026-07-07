@@ -8,6 +8,7 @@ import config from "../../../config/index.config.ts";
 export const backendUrl = config.backendUrl;
 export const baseUrl = `${backendUrl}/api/v1`;
 
+// Base RTK Query fetcher that attaches the auth token to every request
 const baseQuery = fetchBaseQuery({
   baseUrl: baseUrl,
   prepareHeaders: async (headers) => {
@@ -20,6 +21,7 @@ const baseQuery = fetchBaseQuery({
   credentials: "include",
 });
 
+// Root API slice; on 401 (except login) it clears the session and redirects to login
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: async (args, api, extraOptions) => {

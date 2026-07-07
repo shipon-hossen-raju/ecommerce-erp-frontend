@@ -14,6 +14,7 @@ export const saleApi = apiSlice.injectEndpoints({
       providesTags: [TagTypes.sales],
     }),
 
+    // Record a sale; invalidates sales, products (stock) and dashboard caches
     createSale: builder.mutation({
       query: (data: { items: { product: string; quantity: number }[] }) => ({
         url: "/sales",

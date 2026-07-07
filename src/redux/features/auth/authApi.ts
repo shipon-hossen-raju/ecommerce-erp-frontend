@@ -4,6 +4,7 @@ import { apiSlice } from "../api/apiSlice.ts";
 
 export const authApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
+    // Log in, store the returned token, and redirect to the dashboard
     login: builder.mutation({
       query: (data) => ({
         url: "/auth/login",

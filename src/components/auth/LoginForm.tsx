@@ -7,7 +7,6 @@ import { useLoginMutation } from "../../redux/features/auth/authApi";
 import { SetLoginError } from "../../redux/features/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks/hooks";
 import { loginSchema } from "../../schemas/auth.schema";
-import CustomCheckbox from "../form/CustomCheckbox";
 import CustomInput from "../form/CustomInput";
 import PrimaryButton from "../ui/Button";
 import Error from "../validation/Error";
@@ -144,11 +143,6 @@ const LoginForm = () => {
             type="password"
             control={control}
             placeholder="Enter your password"
-          />
-          <CustomCheckbox
-            name="remember"
-            label="Remember me"
-            control={control}
           />
         </div>
 

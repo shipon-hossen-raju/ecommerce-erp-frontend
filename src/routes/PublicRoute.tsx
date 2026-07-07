@@ -2,6 +2,7 @@ import {Navigate} from "react-router-dom";
 import { getToken } from '../helper/SessionHelper';
 import React from "react";
 
+// Renders children only if logged out, otherwise redirects to the dashboard
 const PublicRoute = ({children}: {children: React.ReactNode}) => {
     if(getToken() ){
         return <Navigate to="/" replace/>;
