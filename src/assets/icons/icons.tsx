@@ -157,4 +157,84 @@ export const dashboardIcons = {
       />
     </svg>
   ),
+  box: (
+    <svg
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M21 8L12 3L3 8L12 13L21 8Z"
+        stroke="currentColor"
+        strokeWidth={1.5}
+        strokeLinejoin="round"
+      />
+      <path
+        d="M3 8V16L12 21L21 16V8"
+        stroke="currentColor"
+        strokeWidth={1.5}
+        strokeLinejoin="round"
+      />
+      <path d="M12 13V21" stroke="currentColor" strokeWidth={1.5} />
+    </svg>
+  ),
+  trendUp: (
+    <svg
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M3 17L9 11L13 15L21 7"
+        stroke="currentColor"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M15 7H21V13"
+        stroke="currentColor"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  ),
+  users: (
+    <svg
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z"
+        stroke="currentColor"
+        strokeWidth={1.5}
+      />
+      <path
+        d="M2 20C2 16.6863 5.13401 14 9 14C12.866 14 16 16.6863 16 20"
+        stroke="currentColor"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+      />
+      <path
+        d="M15 4.5C16.7267 5.15 18 6.83 18 8.75C18 10.67 16.7267 12.35 15 13"
+        stroke="currentColor"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+      />
+      <path
+        d="M18 14.5C20.3 15.35 22 17.35 22 19.5"
+        stroke="currentColor"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+      />
+    </svg>
+  ),
 };

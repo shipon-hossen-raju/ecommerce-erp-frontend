@@ -22,7 +22,7 @@ export default function ListLoading() {
         </div>
 
         {/* Table Header */}
-        <div className="bg-yellow-50 px-6 py-2 border-b border-gray-200">
+        <div className="bg-gray-50 px-6 py-2 border-b border-gray-200">
           <div className="grid grid-cols-9 gap-4 text-sm font-medium">
             <div className="h-5 w-8 bg-gray-200 rounded animate-pulse"></div>
             <div className="h-5 w-12 bg-gray-200 rounded animate-pulse"></div>
@@ -85,5 +85,5 @@ export default function ListLoading() {
         </div>
       </div>
     </div>
-  )
+  );
 }
