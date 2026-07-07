@@ -2,6 +2,7 @@
 
 import TagTypes from "../../../constant/tagType.constant";
 import { ErrorToast, SuccessToast } from "../../../helper/ValidationHelper";
+import type { RootState } from "../../store/store";
 import { apiSlice } from "../api/apiSlice";
 import { SetUser } from "./userSlice";
 
@@ -76,10 +77,15 @@ export const userApi = apiSlice.injectEndpoints({
         body: data,
       }),
       invalidatesTags: [TagTypes.users],
-      async onQueryStarted(_arg, { queryFulfilled }) {
+      async onQueryStarted({ id }, { queryFulfilled, dispatch, getState }) {
         try {
           await queryFulfilled;
           SuccessToast("User updated successfully");
+
+          const currentUserId = (getState() as RootState).user.user?._id;
+          if (currentUserId === id) {
+            dispatch(apiSlice.util.invalidateTags([TagTypes.me]));
+          }
         } catch (err: any) {
           const message = err?.error?.data?.message || "Something Went Wrong";
           ErrorToast(message);

@@ -3,7 +3,11 @@ import React, { useEffect } from "react";
 import { X } from "lucide-react";
 import { MdLogout } from "react-icons/md";
 import { logoSVG } from "../../assets/icons/icons";
-import { adminMenuItems, superAdminMenuItems } from "../../data/sidebar.data";
+import {
+  adminMenuItems,
+  baseMenuItems,
+  managerMenuItems,
+} from "../../data/sidebar.data";
 import { getUserInfo, logout } from "../../helper/SessionHelper";
 import SidebarLink from "./SidebarLink";
 
@@ -16,13 +20,16 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, closeSidebar }) => {
   const user = getUserInfo();
 
   const menuItems =
-    user?.role === "ADMIN" ? adminMenuItems : superAdminMenuItems;
+    user?.role === "ADMIN"
+      ? adminMenuItems
+      : user?.role === "MANAGER"
+        ? managerMenuItems
+        : baseMenuItems;
 
   // Close sidebar when clicking outside on mobile
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) {
-        // If screen becomes larger than md breakpoint, ensure menu doesn't stay closed
         document.body.style.overflow = "";
       }
     };

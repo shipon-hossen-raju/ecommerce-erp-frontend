@@ -4,6 +4,7 @@ import DashboardLayout from "../components/DashboardLayout/DashboardLayout";
 import LoginPage from "../pages/auth/LoginPage";
 import DashboardPage from "../pages/dashboard/DashboardPage";
 import ProductsPage from "../pages/products/ProductsPage";
+import SalesPage from "../pages/sales/SalesPage";
 import UsersPage from "../pages/users/UsersPage";
 import NotFoundRoute from "./NotFoundRoute";
 import PrivateRoute from "./PrivateRoute";
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "products",
         element: <ProductsPage />,
+      },
+      {
+        path: "sales",
+        element: <SalesPage />,
       },
       {
         path: "users",

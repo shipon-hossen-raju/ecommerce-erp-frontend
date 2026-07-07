@@ -1,13 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { IUser } from "../../../types/user.type";
-
+import type { IUserAccount } from "../../../types/user.type";
 
 type TInitialState = {
-  user: IUser | null;
-}
+  user: IUserAccount | null;
+};
 
 const initialState: TInitialState = {
-  user: null
+  user: null,
 };
 
 const userSlice = createSlice({
@@ -20,9 +19,7 @@ const userSlice = createSlice({
   },
 });
 
-export const {
-  SetUser
-} = userSlice.actions;
+export const { SetUser } = userSlice.actions;
 
 const userSliceReducer = userSlice.reducer;
 export default userSliceReducer;

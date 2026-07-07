@@ -24,7 +24,7 @@ export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: async (args, api, extraOptions) => {
     const result = await baseQuery(args, api, extraOptions);
-    if (result?.error?.status === 401) {
+    if (result?.error?.status === 401 && api.endpoint !== "login") {
       localStorage.clear();
       ErrorToast("Authorization Expired");
       window.location.href = "/";
