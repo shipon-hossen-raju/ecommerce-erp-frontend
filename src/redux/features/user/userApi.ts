@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import TagTypes from "../../../constant/tagType.constant";
-import { ErrorToast } from "../../../helper/ValidationHelper";
+import { ErrorToast, SuccessToast } from "../../../helper/ValidationHelper";
 import { apiSlice } from "../api/apiSlice";
 import { SetUser } from "./userSlice";
 
@@ -30,7 +30,86 @@ export const userApi = apiSlice.injectEndpoints({
         }
       },
     }),
+
+    getUsers: builder.query({
+      query: () => ({
+        url: "/users",
+        method: "GET",
+      }),
+      keepUnusedDataFor: 30,
+      providesTags: [TagTypes.users],
+    }),
+
+    createUser: builder.mutation({
+      query: (data: {
+        name: string;
+        email: string;
+        password: string;
+        role: string;
+      }) => ({
+        url: "/users",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: [TagTypes.users],
+      async onQueryStarted(_arg, { queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          SuccessToast("User created successfully");
+        } catch (err: any) {
+          const message = err?.error?.data?.message || "Something Went Wrong";
+          ErrorToast(message);
+        }
+      },
+    }),
+
+    updateUser: builder.mutation({
+      query: ({
+        id,
+        data,
+      }: {
+        id: string;
+        data: { name?: string; password?: string; role?: string };
+      }) => ({
+        url: `/users/${id}`,
+        method: "PUT",
+        body: data,
+      }),
+      invalidatesTags: [TagTypes.users],
+      async onQueryStarted(_arg, { queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          SuccessToast("User updated successfully");
+        } catch (err: any) {
+          const message = err?.error?.data?.message || "Something Went Wrong";
+          ErrorToast(message);
+        }
+      },
+    }),
+
+    deleteUser: builder.mutation({
+      query: (id: string) => ({
+        url: `/users/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: [TagTypes.users],
+      async onQueryStarted(_arg, { queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          SuccessToast("User deleted successfully");
+        } catch (err: any) {
+          const message = err?.error?.data?.message || "Something Went Wrong";
+          ErrorToast(message);
+        }
+      },
+    }),
   }),
 });
 
-export const { useGetMeQuery } = userApi;
+export const {
+  useGetMeQuery,
+  useGetUsersQuery,
+  useCreateUserMutation,
+  useUpdateUserMutation,
+  useDeleteUserMutation,
+} = userApi;
