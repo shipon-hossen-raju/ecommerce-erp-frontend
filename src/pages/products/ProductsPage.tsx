@@ -9,7 +9,10 @@ import ProductFormModal from "../../components/product/ProductFormModal";
 import PrimaryButton from "../../components/ui/Button";
 import SearchInput from "../../components/ui/SearchInput";
 import { getUserInfo } from "../../helper/SessionHelper";
-import { useGetProductsQuery } from "../../redux/features/product/productApi";
+import {
+  useGetProductCategoriesQuery,
+  useGetProductsQuery,
+} from "../../redux/features/product/productApi";
 import type { IMeta } from "../../types/global.type";
 import type { IProduct } from "../../types/product.type";
 
@@ -21,6 +24,8 @@ const ProductsPage = () => {
   const canManage = user?.role === "ADMIN" || user?.role === "MANAGER";
 
   const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("");
+  const [lowStockOnly, setLowStockOnly] = useState(false);
   const [page, setPage] = useState(1);
 
   const [formModal, setFormModal] = useState<{
@@ -33,12 +38,17 @@ const ProductsPage = () => {
     product: IProduct | null;
   }>({ open: false, product: null });
 
+  const { data: categoriesRes } = useGetProductCategoriesQuery(undefined);
+  const categories: string[] = categoriesRes?.data ?? [];
+
   const {
     data: resData,
     isLoading,
     isError,
   } = useGetProductsQuery([
     { name: "searchTerm", value: search },
+    { name: "category", value: category },
+    { name: "lowStock", value: lowStockOnly ? "true" : "" },
     { name: "page", value: String(page) },
     { name: "limit", value: String(PAGE_LIMIT) },
   ]);
@@ -58,7 +68,7 @@ const ProductsPage = () => {
     <div>
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <h1 className="text-xl font-semibold text-gray-800">Products</h1>
-        <div className="flex flex-col sm:flex-row gap-3">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-3">
           <SearchInput
             placeholder="Search by name, SKU or category"
             value={search}
@@ -67,6 +77,32 @@ const ProductsPage = () => {
               setPage(1);
             }}
           />
+          <select
+            value={category}
+            onChange={(e) => {
+              setCategory(e.target.value);
+              setPage(1);
+            }}
+            className="px-3 py-2 border border-gray-300 rounded-lg shadow-sm text-sm text-gray-600 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+          >
+            <option value="">All Categories</option>
+            {categories.map((cat) => (
+              <option key={cat} value={cat}>
+                {cat}
+              </option>
+            ))}
+          </select>
+          <label className="flex items-center gap-2 text-sm text-gray-600 select-none whitespace-nowrap">
+            <input
+              type="checkbox"
+              checked={lowStockOnly}
+              onChange={(e) => {
+                setLowStockOnly(e.target.checked);
+                setPage(1);
+              }}
+            />
+            Low Stock Only
+          </label>
           {canManage && (
             <PrimaryButton
               className="!w-auto px-4"

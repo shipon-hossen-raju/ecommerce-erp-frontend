@@ -12,6 +12,7 @@ type TProps = {
   placeholder?: string;
   disabled?: boolean;
   onInput?: React.FormEventHandler<HTMLInputElement>;
+  onFocus?: React.FocusEventHandler<HTMLInputElement>;
 };
 
 const CustomInput = ({
@@ -21,6 +22,7 @@ const CustomInput = ({
   control,
   placeholder = "",
   onInput,
+  onFocus,
   disabled = false,
 }: TProps) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -79,6 +81,7 @@ const CustomInput = ({
                       value={field.value ?? ""}
                       placeholder={placeholder}
                       onInput={onInput}
+                      onFocus={onFocus}
                       disabled={disabled}
                       className={`${baseClass} ${
                         disabled

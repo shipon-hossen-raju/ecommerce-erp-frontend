@@ -32,13 +32,17 @@ const SalesPage = () => {
   return (
     <div>
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-        <h1 className="text-xl font-semibold text-gray-800">Sales</h1>
-        <PrimaryButton
-          className="!w-auto px-4"
-          onClick={() => setFormOpen(true)}
-        >
-          <Plus size={18} /> Add Sale
-        </PrimaryButton>
+        <div>
+          <h1 className="text-xl font-semibold text-gray-800">Sales</h1>
+        </div>
+        <div>
+          <PrimaryButton
+            className="!w-auto px-4"
+            onClick={() => setFormOpen(true)}
+          >
+            <Plus size={18} /> Add Sale
+          </PrimaryButton>
+        </div>
       </div>
 
       {!canView ? (

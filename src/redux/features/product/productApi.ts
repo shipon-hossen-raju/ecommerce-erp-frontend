@@ -19,6 +19,15 @@ export const productApi = apiSlice.injectEndpoints({
       providesTags: [TagTypes.products],
     }),
 
+    getProductCategories: builder.query({
+      query: () => ({
+        url: "/products/categories",
+        method: "GET",
+      }),
+      keepUnusedDataFor: 300,
+      providesTags: [TagTypes.products],
+    }),
+
     createProduct: builder.mutation({
       query: (data: FormData) => ({
         url: "/products",
@@ -76,6 +85,7 @@ export const productApi = apiSlice.injectEndpoints({
 
 export const {
   useGetProductsQuery,
+  useGetProductCategoriesQuery,
   useCreateProductMutation,
   useUpdateProductMutation,
   useDeleteProductMutation,

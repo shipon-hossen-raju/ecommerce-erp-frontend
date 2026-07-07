@@ -13,7 +13,33 @@ export const dashboardApi = apiSlice.injectEndpoints({
       keepUnusedDataFor: 600,
       providesTags: [TagTypes.dashboard],
     }),
+    getSalesTrend: builder.query({
+      query: (days: number) => {
+        return {
+          url: `/dashboard/sales-trend`,
+          method: "GET",
+          params: { days },
+        };
+      },
+      keepUnusedDataFor: 600,
+      providesTags: [TagTypes.dashboard],
+    }),
+    getTopProducts: builder.query({
+      query: ({ days, limit }: { days: number; limit?: number }) => {
+        return {
+          url: `/dashboard/top-products`,
+          method: "GET",
+          params: { days, limit },
+        };
+      },
+      keepUnusedDataFor: 600,
+      providesTags: [TagTypes.dashboard],
+    }),
   }),
 });
 
-export const { useGetDashboardQuery } = dashboardApi;
+export const {
+  useGetDashboardQuery,
+  useGetSalesTrendQuery,
+  useGetTopProductsQuery,
+} = dashboardApi;

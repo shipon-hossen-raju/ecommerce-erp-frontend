@@ -34,9 +34,6 @@ const Header: React.FC<HeaderProps> = ({ children }) => {
   const avatarColor = ROLE_AVATAR_COLOR[role] ?? "bg-gray-500";
   const RoleIcon = ROLE_ICON[role] ?? UserIcon;
 
-  console.log("role ", role);
-  console.log("RoleIcon ", RoleIcon);
-
   return (
     <header className="bg-white text-white h-16 flex items-center justify-between px-4 z-10 border-b">
       <div className="flex items-center">
